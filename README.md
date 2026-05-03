@@ -135,3 +135,4 @@ You can also run the Python script directly without building an executable.
 ## Security model
 
 The agent is not allowed to write outside its workspace path. Shell command execution is disabled unless explicitly enabled. Review `SECURITY.md` before using the agent against sensitive repositories.
+
