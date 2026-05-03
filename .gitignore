@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+.ai_workstation_venv/
+
+# Runtime data
+ai_workstation_settings.json
+logs/
+runtime/ollama/
+runtime/ollama-models/
+models/huggingface/
+models/ollama-imports/
+workspace/*
+!workspace/.gitkeep
+
+# Build outputs
+build/
+dist/
+*.spec
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
