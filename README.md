@@ -36,7 +36,14 @@ Hugging Face GGUF download → local Ollama import → Gradio UI → workspace-s
 python .\ai_workstation_launcher.py
 ```
 
-The launcher will create a managed `.ai_workstation_venv`, install lightweight UI/client dependencies, create `ai_workstation_settings.json`, download portable Ollama when missing, start Ollama locally, and launch the UI at `http://127.0.0.1:7860`.
+The launcher will:
+
+1. create a managed `.ai_workstation_venv` if needed,
+2. install only lightweight UI/client dependencies,
+3. create `ai_workstation_settings.json`,
+4. download portable Ollama when missing,
+5. start Ollama locally,
+6. launch the UI at `http://127.0.0.1:7860`.
 
 ## Recommended model flow
 
@@ -74,6 +81,18 @@ python .\ai_workstation_launcher.py `
   --agent-allow-write
 ```
 
+Enable shell commands only when needed:
+
+```powershell
+python .\ai_workstation_launcher.py `
+  --model qwen3-14b-hf `
+  --agent-task "Run tests and fix failures" `
+  --agent-workspace .\workspace `
+  --agent-max-steps 20 `
+  --agent-allow-write `
+  --agent-allow-shell
+```
+
 ## Logs
 
 ```powershell
@@ -83,11 +102,35 @@ Get-Content .\logs\ollama-runtime.log -Wait
 
 ## Build an executable
 
+A convenience script is included:
+
 ```powershell
 .\scripts\build_exe.ps1
 ```
 
 The build produces a PyInstaller onedir bundle under `dist\AIWorkstationHub`.
+
+You can also run the Python script directly without building an executable.
+
+## Repository layout
+
+```text
+.
+├── ai_workstation_launcher.py      # single-file app/launcher
+├── ai_workstation_settings.example.json
+├── requirements.txt
+├── requirements-dev.txt
+├── pyproject.toml
+├── scripts/
+│   ├── build_exe.ps1
+│   └── run.ps1
+├── tests/
+│   └── test_launcher.py
+├── .github/workflows/ci.yml
+└── docs/
+    ├── ARCHITECTURE.md
+    └── OPERATIONS.md
+```
 
 ## Security model
 
